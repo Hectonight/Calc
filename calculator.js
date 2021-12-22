@@ -4,13 +4,13 @@ var ctx = canvas.getContext("2d");
 ctx.fillStyle = "gray";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-const Coordinate = [75, 200, 325, 450, 575, 700];
+let Coordinate = [75, 200, 325, 450, 575, 700, 825];
 ctx.fillStyle = "orange";
 
 
 
 for (let i1=0; i1<Coordinate.length; i1++){
-    for (let i2=0; i2<Coordinate.length - 2; i2++){
+    for (let i2=0; i2<Coordinate.length - 3; i2++){
         ctx.fillRect(Coordinate[i1], Coordinate[i2], 75, 75);
     }
 }
@@ -37,6 +37,10 @@ ctx.fillText("(", Coordinate[4] + 25, Coordinate[1] + 55);
 ctx.fillText(")", Coordinate[4] + 25, Coordinate[2] + 55);
 ctx.fillText("^", Coordinate[4] + 25, Coordinate[3] + 65);
 ctx.fillText("%", Coordinate[5] + 10, Coordinate[0] + 60);
+ctx.fillText("√", Coordinate[6] + 15, Coordinate[0] + 65);
+ctx.fillText("|", Coordinate[6] + 30, Coordinate[1] + 55);
+ctx.fillText("π", Coordinate[6] + 17, Coordinate[2] + 57);
+ctx.fillText("e", Coordinate[6] + 20, Coordinate[3] + 57);
 
 ctx.font = "45px Arial";
 ctx.fillText("ln", Coordinate[5] + 20, Coordinate[1] + 55);
@@ -58,12 +62,14 @@ function Update(char){
      else {document.getElementById("final").innerHTML += char;}
 }
 function logbase(b, a=10){
-    return Math.log(a)/Math.log(b)
-}
+    return Math.log(a)/Math.log(b);
+};
 
+let replace1 = ["^", "log", "ln", "√", "e", "π", "abs"]
+let replace2 = ["**", "logbase", "Math.log", "Math.sqrt", "Math.E", "Math.PI", "Math.abs"]
 function equals(){
     Ans = document.getElementById("final").innerHTML;
-    Ans = Ans.replace("^", "**").replace("log", "logbase").replace("ln", "Math.log");
+    for (let i=0; i<replace1.length; i++){Ans = Ans.replace(replace1[i], replace2[i]);};
     FinalAns = eval(Ans);
     document.getElementById("final").innerHTML = String(FinalAns);
 }
@@ -103,8 +109,12 @@ canvas.addEventListener('click', function(event){
         else if (Coordinate[1] <= y && y <= Coordinate[1] + 75){Update("ln(");}
         else if (Coordinate[2] <= y && y <= Coordinate[2] + 75){Update("log(");}
         else if (Coordinate[3] <= y && y <= Coordinate[3] + 75){Update(",");}
+    }else if (Coordinate[6] <= x && x <= Coordinate[6] + 75){
+        if (Coordinate[0] <= y && y <= Coordinate[0] + 75){Update("√(");}
+        else if (Coordinate[1] <= y && y <= Coordinate[1] + 75){Update("abs(");}
+        else if (Coordinate[2] <= y && y <= Coordinate[2] + 75){Update("π");}
+        else if (Coordinate[3] <= y && y <= Coordinate[3] + 75){Update("e");}
     }
-    
 }, false);
 
 document.addEventListener('keydown', function(event) {
@@ -134,6 +144,9 @@ document.addEventListener('keydown', function(event) {
         case "Backspace": Update("Clear"); break;
         case "(": Update("("); break;
         case ")": Update(")"); break;
+        case "|": Update("abs("); break;
+        case "e": Update("e"); break;
+        case "√": Update("√("); break;
     }
 
 }, true);
