@@ -69,45 +69,45 @@ function equals(){
 }
 
 canvas.addEventListener('click', function(event){
-    var x = event.clientX;
-    var y = event.clientY;
+    var rect = canvas.getBoundingClientRect();
+    var x = event.clientX - rect.left;
+    var y = event.clientY - rect.top;
 
     if (Coordinate[0] <= x && x <= Coordinate[0] + 75){
-        if (240 <= y && y <= 315){Update("1");}
-        else if (360 <= y && y <= 435){Update("4");}
-        else if (485 <= y && y <= 560){Update("7");}
-        else if (610 <= y && y <= 685){Update("0");}
+        if (Coordinate[0] <= y && y <= Coordinate[0] + 75){Update("1");}
+        else if (Coordinate[1] <= y && y <= Coordinate[1] + 75){Update("4");}
+        else if (Coordinate[2] <= y && y <= Coordinate[2] + 75){Update("7");}
+        else if (Coordinate[3] <= y && y <= Coordinate[3] + 75){Update("0");}
     } else if (Coordinate[1] <= x && x <= Coordinate[1] + 75){
-        if (240 <= y && y <= 315){Update("2");}
-        else if (360 <= y && y <= 435){Update("5");}
-        else if (485 <= y && y <= 560){Update("8");}
-        else if (610 <= y && y <= 685){Update(".");}
+        if (Coordinate[0] <= y && y <= Coordinate[0] + 75){Update("2");}
+        else if (Coordinate[1] <= y && y <= Coordinate[1] + 75){Update("5");}
+        else if (Coordinate[2] <= y && y <= Coordinate[2] + 75){Update("8");}
+        else if (Coordinate[3] <= y && y <= Coordinate[3] + 75){Update(".");}
     } else if (Coordinate[2] <= x && x <= Coordinate[2] + 75){
-        if (240 <= y && y <= 315){Update("2");}
-        else if (360 <= y && y <= 435){Update("5");}
-        else if (485 <= y && y <= 560){Update("8");}
-        else if (610 <= y && y <= 685){equals();}
+        if (Coordinate[0] <= y && y <= Coordinate[0] + 75){Update("3");}
+        else if (Coordinate[1] <= y && y <= Coordinate[1] + 75){Update("6");}
+        else if (Coordinate[2] <= y && y <= Coordinate[2] + 75){Update("9");}
+        else if (Coordinate[3] <= y && y <= Coordinate[3] + 75){equals();}
     }else if (Coordinate[3] <= x && x <= Coordinate[3] + 75){
-        if (240 <= y && y <= 315){Update("+");}
-        else if (360 <= y && y <= 435){Update("-");}
-        else if (485 <= y && y <= 560){Update("*");}
-        else if (610 <= y && y <= 685){Update("/");}
+        if (Coordinate[0] <= y && y <= Coordinate[0] + 75){Update("+");}
+        else if (Coordinate[1] <= y && y <= Coordinate[1] + 75){Update("-");}
+        else if (Coordinate[2] <= y && y <= Coordinate[2] + 75){Update("*");}
+        else if (Coordinate[3] <= y && y <= Coordinate[3] + 75){Update("/");}
     }else if (Coordinate[4] <= x && x <= Coordinate[4] + 75){
-        if (240 <= y && y <= 315){Update("Clear");}
-        else if (360 <= y && y <= 435){Update("(");}
-        else if (485 <= y && y <= 560){Update(")");}
-        else if (610 <= y && y <= 685){Update("^");}
+        if (Coordinate[0] <= y && y <= Coordinate[0] + 75){Update("Clear");}
+        else if (Coordinate[1] <= y && y <= Coordinate[1] + 75){Update("(");}
+        else if (Coordinate[2] <= y && y <= Coordinate[2] + 75){Update(")");}
+        else if (Coordinate[3] <= y && y <= Coordinate[3] + 75){Update("^");}
     }else if (Coordinate[5] <= x && x <= Coordinate[5] + 75){
-        if (240 <= y && y <= 315){Update("%");}
-        else if (360 <= y && y <= 435){Update("ln");}
-        else if (485 <= y && y <= 560){Update("log");}
-        else if (610 <= y && y <= 685){Update(",");}
+        if (Coordinate[0] <= y && y <= Coordinate[0] + 75){Update("%");}
+        else if (Coordinate[1] <= y && y <= Coordinate[1] + 75){Update("ln");}
+        else if (Coordinate[2] <= y && y <= Coordinate[2] + 75){Update("log");}
+        else if (Coordinate[3] <= y && y <= Coordinate[3] + 75){Update(",");}
     }
     
 }, false);
 
 document.addEventListener('keydown', function(event) {
-    console.log(event.key)
     switch(event.key){
         case "1": Update("1"); break;
         case "2": Update("2"); break;
