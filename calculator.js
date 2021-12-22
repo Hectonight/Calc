@@ -100,8 +100,8 @@ canvas.addEventListener('click', function(event){
         else if (Coordinate[3] <= y && y <= Coordinate[3] + 75){Update("^");}
     }else if (Coordinate[5] <= x && x <= Coordinate[5] + 75){
         if (Coordinate[0] <= y && y <= Coordinate[0] + 75){Update("%");}
-        else if (Coordinate[1] <= y && y <= Coordinate[1] + 75){Update("ln");}
-        else if (Coordinate[2] <= y && y <= Coordinate[2] + 75){Update("log");}
+        else if (Coordinate[1] <= y && y <= Coordinate[1] + 75){Update("ln(");}
+        else if (Coordinate[2] <= y && y <= Coordinate[2] + 75){Update("log(");}
         else if (Coordinate[3] <= y && y <= Coordinate[3] + 75){Update(",");}
     }
     
@@ -128,6 +128,7 @@ document.addEventListener('keydown', function(event) {
         case ".": Update("."); break;
         case ",": Update(", "); break;
         case "=": equals(); break;
+        case "Enter": equals(); break;
         case "c": Update("Clear"); break;
         case "C": Update("Clear"); break;
         case "Backspace": Update("Clear"); break;
